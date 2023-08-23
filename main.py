@@ -14,7 +14,13 @@ class ResearchRequest(BaseModel):
     report_type: str
     agent: str
 
+#Adding env loading
+from dotenv import load_dotenv
 
+#Assuming env is one file directory above main
+load_dotenv(os.path.join(os.path.dirname(__file__), '../.env'))
+
+api_key = os.environ.get("OPENAI_API_KEY")
 
 app = FastAPI()
 app.mount("/site", StaticFiles(directory="client"), name="site")
